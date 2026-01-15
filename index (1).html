@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hey ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .content-box {
+        background: white;
+        padding: 30px 20px;
+        border-radius: 24px;
+        text-align: center;
+        width: 90%;
+        max-width: 360px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        line-height: 1.3;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+    }
+
+    button {
+        font-size: 1.2em;
+        padding: 14px;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    #yes {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #no {
+        background-color: #ddd;
+        position: relative;
+    }
+
+    /* Shake animation */
+    .shake {
+        animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(-6px, 0); }
+        50% { transform: translate(6px, 0); }
+        75% { transform: translate(-6px, 0); }
+        100% { transform: translate(0, 0); }
+    }
+
+    .evil-face {
+        position: absolute;
+        font-size: 26px;
+        animation: fade 1s forwards;
+        pointer-events: none;
+    }
+
+    @keyframes fade {
+        from { opacity: 1; }
+        to { opacity: 0; transform: scale(1.5); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="content-box">
+    <h1>hiiiii my asian baby ❤️<br>will you be my Valentine?</h1>
+    <div class="button-container">
+        <button id="yes">Yes 💕</button>
+        <button id="no">No 😒</button>
+    </div>
+</div>
+
+<audio id="music" loop>
+    <source src="https://raw.githubusercontent.com/TheDataDesk/Binary-Love/main/song.mp3" type="audio/mp3">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0"></script>
+
+<script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const music = document.getElementById("music");
+
+    yesBtn.onclick = () => {
+        alert("YIPPPPPPPEEE😭❤️ See you soon sexy❤️❤️️️");
+        confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 }
+        });
+        music.play();
+    };
+
+    function runAwayAndShake() {
+        // shake
+        noBtn.classList.add("shake");
+        setTimeout(() => noBtn.classList.remove("shake"), 400);
+
+        // run away
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+        spawnEvil();
+    }
+
+    noBtn.addEventListener("mouseenter", runAwayAndShake);
+    noBtn.addEventListener("click", runAwayAndShake);
+    noBtn.addEventListener("touchstart", runAwayAndShake);
+
+    function spawnEvil() {
+        for (let i = 0; i < 5; i++) {
+            const face = document.createElement("div");
+            face.className = "evil-face";
+            face.textContent = "😈";
+            face.style.left = Math.random() * window.innerWidth + "px";
+            face.style.top = Math.random() * window.innerHeight + "px";
+            document.body.appendChild(face);
+            setTimeout(() => face.remove(), 1000);
+        }
+    }
+</script>
+
+</body>
+</html>
